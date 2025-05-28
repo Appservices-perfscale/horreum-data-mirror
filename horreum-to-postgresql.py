@@ -228,6 +228,10 @@ class Worker():
 
             when = datetime.datetime.fromtimestamp(ds["start"] / 1000, datetime.UTC)
 
+            if label_values == {}:
+                self.logger.info(f"No labels for dataset {ds['id']} from {when}, skipping it")
+                continue
+
             self.logger.debug(f"Collected {len(label_values)} labels for dataset {ds['id']} from {when}")
 
             data_to_insert.append({
